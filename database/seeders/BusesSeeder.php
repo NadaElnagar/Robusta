@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Bus;
+use App\Models\Buses;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,11 +14,11 @@ class BusesSeeder extends Seeder
     public function run(): void
     {
         $buses = [
-            ['name' => 'Bus 1', 'seats_capacity' => 12],
-            ['name' => 'Bus 2', 'seats_capacity' => 12],
+            ['name' => 'Buses 1', 'seats_capacity' => 12],
+            ['name' => 'Buses 2', 'seats_capacity' => 12],
 
         ];
 
-        Bus::insert($buses);
+        Buses::insert($buses);
     }
 }

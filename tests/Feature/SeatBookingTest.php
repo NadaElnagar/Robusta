@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 
 
@@ -16,12 +17,15 @@ class SeatBookingTest extends TestCase
 
     public function testSeatBookingSuccessfully()
     {
-        $seat = Seats::factory()->create();
+        $seat = Seats::factory()->create(['is_booked'=>false]);
         $user = User::factory()->create();
+        $token = JWTAuth::fromUser($user);
 
-        $response = $this->postJson('/api/auth/book-seat', [
+        $response = $this->postJson('api/auth/book_seat', [
             'seat_id' => $seat->id,
             'user_id' => $user->id,
+        ], [
+            'Authorization' => 'Bearer ' . $token,
         ]);
 
         $response->assertStatus(200);
@@ -38,10 +42,13 @@ class SeatBookingTest extends TestCase
     {
         $seat = Seats::factory()->create(['is_booked' => true]);
         $user = User::factory()->create();
+        $token = JWTAuth::fromUser($user);
 
-        $response = $this->postJson('/api/auth/book-seat', [
+        $response = $this->postJson('api/auth/book_seat', [
             'seat_id' => $seat->id,
             'user_id' => $user->id,
+        ], [
+            'Authorization' => 'Bearer ' . $token,
         ]);
 
         $response->assertStatus(422);
@@ -53,4 +60,6 @@ class SeatBookingTest extends TestCase
             'user_id' => $seat->user_id, // Make sure the seat's user association is not changed
         ]);
     }
+
+
 }

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Bus;
+use App\Models\Buses;
 use App\Models\Cities;
 use App\Models\Trip;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -20,7 +20,7 @@ class TripsSeeder extends Seeder
             [
                 'start_station' => Cities::where('name', 'Cairo')->first()->id,
                 'end_station' => Cities::where('name', 'Asyut')->first()->id,
-                'bus_id' => Bus::where('name', 'Bus 1')->first()->id,
+                'bus_id' => Buses::where('name', 'Buses 1')->first()->id,
             ],
             // Add more trips as needed
         ];
