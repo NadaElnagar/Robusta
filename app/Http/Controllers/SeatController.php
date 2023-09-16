@@ -16,6 +16,9 @@ class SeatController extends Controller
         $this->seatService = $seatService;
     }
 
+    /*
+     * update user to book seats
+     * */
     public function bookSeat(BookSeatRequest $request)
     {
         try {
@@ -26,6 +29,9 @@ class SeatController extends Controller
         }
     }
 
+    /*
+     * Send start and end station and return with json objects for available
+     * */
     public function getAvailableSeats(AvailabileSeatsRequest $request)
     {
         $availableSeats = $this->seatService->getAvailableSeats($request->start_station, $request->end_station);
