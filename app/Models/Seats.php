@@ -11,6 +11,8 @@ class Seats extends Model
 
     protected $table = 'seats';
 
+    protected $fillable = ['is_booked','seat_number','user_id'];
+
     public function bus()
     {
         return $this->belongsTo(Bus::class);

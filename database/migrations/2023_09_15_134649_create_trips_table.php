@@ -16,12 +16,10 @@ return new class extends Migration
         Schema::create('trips', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('bus_id');
-
-
             $table->foreignId('start_station')->constrained('cities');
             $table->foreignId('end_station')->constrained('cities');
             $table->foreign('bus_id')
-                ->references('id')->on('bus')->onDelete('cascade');
+                ->references('id')->on('buses')->onDelete('cascade');
             $table->timestamps();
         });
     }

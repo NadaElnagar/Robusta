@@ -18,9 +18,10 @@ class CitiesSeeder extends Seeder
             ['name' => 'Giza'],
             ['name' => 'AlFayyum'],
             ['name' => 'AlMinya'],
+            ['name' => 'Asyut']
 
         ];
 
-        Cities::updateOrCreate($cities);
+        Cities::insert($cities);
     }
 }
